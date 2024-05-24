@@ -11,4 +11,4 @@ basin/overlay.png
 `
 is overlay image for overlay
 
-run `main.py` to combined two image(tif-png) and can plot in on shp file by run `visualizer.py`.
+run `main.py` to combine two images(tif-png) and also can plot in on shp file by run `visualizer.py`.
