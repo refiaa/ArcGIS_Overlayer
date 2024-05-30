@@ -39,7 +39,7 @@ class BasinOverlayer:
         plt.show()
 
 if __name__ == "__main__":
-    visualizer = BasinOverlayer(tif_path='./tif/Basin_Malawi.tif', shp_path='./shp/World_Countries_Generalized.shp')
+    visualizer = BasinOverlayer(tif_path='./tif_output/Basin_Malawi.tif', shp_path='./shp/World_Countries_Generalized.shp')
     visualizer.load_tif()
     visualizer.load_shp()
     visualizer.plot_tif_on_shp()
