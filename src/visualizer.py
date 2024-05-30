@@ -1,6 +1,7 @@
 import rasterio
 import geopandas as gpd
 import matplotlib.pyplot as plt
+
 from rasterio.plot import show
 from rasterio.mask import mask
 from shapely.geometry import box
@@ -22,7 +23,8 @@ class BasinOverlayer:
         if self.tif_data is None or self.shp_data is None:
             raise ValueError()
 
-        bbox = gpd.GeoDataFrame({'geometry': [box(32, -18, 36, -9)]}, crs=self.shp_data.crs)
+        minx, miny, maxx, maxy = 30, -20, 38, -8
+        bbox = gpd.GeoDataFrame({'geometry': [box(minx, miny, maxx, maxy)]}, crs=self.shp_data.crs)
 
         out_image, out_transform = mask(self.tif_data, bbox.geometry, crop=True)
         out_meta = self.tif_data.meta.copy()
@@ -37,7 +39,7 @@ class BasinOverlayer:
         plt.show()
 
 if __name__ == "__main__":
-    Visualizer = BasinOverlayer(tif_path='./tif_output/Basin_FlowDi2_Malawi.tif', shp_path='./shp/World_Countries_Generalized.shp')
-    Visualizer.load_tif()
-    Visualizer.load_shp()
-    Visualizer.plot_tif_on_shp()
+    visualizer = BasinOverlayer(tif_path='./tif/Basin_Malawi.tif', shp_path='./shp/World_Countries_Generalized.shp')
+    visualizer.load_tif()
+    visualizer.load_shp()
+    visualizer.plot_tif_on_shp()
